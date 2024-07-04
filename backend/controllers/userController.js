@@ -95,7 +95,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
         if (req.body.password) {
             const salt = await bcryptjs.genSalt(10);
-    const hashedPassword = await bcryptjs.hash(password, salt);
+            const hashedPassword = await bcryptjs.hash(password, salt);
             user.password = hashedPassword;
         }
 
@@ -111,7 +111,24 @@ const loginUser = asyncHandler(async (req, res) => {
         res.status(404)
         throw new Error("User not found.")
     }
- })
+ });
+
+const deleteUserById = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id)
+
+    if (user) {
+       if(user.isAdmin) {
+        res.status(400)
+            throw new Error("Cannot delete admin user")
+       }
+
+       await User.deleteOne({_id: user._id})
+       res.json({message: "User removed"})
+    } else {
+        res.status(404)
+        throw new Error("User not found.")
+    }
+})
 
 export {
     createUser,
@@ -120,4 +137,5 @@ export {
     getAllUsers,
     getCurrentUserProfile,
     updateCurrentUserProfile,
+    deleteUserById
 };
