@@ -23,8 +23,10 @@ router.route('/profile')
        .get(authenticate, getCurrentUserProfile)
        .put(authenticate, updateCurrentUserProfile);
 
+       // admin Route
 router.route('/:id')
        .delete(authenticate, authorizeAdmin, deleteUserById)
        .get(authenticate, authorizeAdmin, getUserById)
        .put(authenticate, authorizeAdmin, updateUserById);
+       
 export default router;
