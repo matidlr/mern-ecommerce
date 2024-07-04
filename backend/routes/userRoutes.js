@@ -1,5 +1,5 @@
 import express from "express";
-import {createUser, loginUser, logout, getAllUsers, getCurrentUserProfile } from '../controllers/userController.js'
+import {createUser, loginUser, logout, getAllUsers, getCurrentUserProfile, updateCurrentUserProfile } from '../controllers/userController.js'
 
 import { authenticate, authorizeAdmin } from "../middlewares/authMiddleware.js";
 
@@ -9,6 +9,8 @@ router.route('/').post(createUser).get(authenticate, authorizeAdmin, getAllUsers
 router.post("/auth", loginUser);
 router.post('/logout', logout);
 
-router.route('/profile').get(authenticate, getCurrentUserProfile)
+router.route('/profile')
+       .get(authenticate, getCurrentUserProfile)
+       .put(authenticate, updateCurrentUserProfile);
 
 export default router;
