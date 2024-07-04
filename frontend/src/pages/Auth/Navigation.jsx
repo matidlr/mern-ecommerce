@@ -52,7 +52,38 @@ const Navigation = () => {
           </div>
 
           </Link>
-                    </div>     
+
+          <Link to="/favorite" className="flex relative">
+          <div className="flex justify-center items-center transition-transform transform hover:translate-x-2">
+            <FaHeart className="mt-[3rem] mr-2" size={20} />
+            <span className="hidden nav-item-name mt-[3rem]">
+              Favorites
+            </span>{" "}
+            
+          </div>
+        </Link>
+                    </div>    
+
+        <ul>
+           <li>
+                <Link to="/login" className="flex relative">
+                <div className="flex items-center transition-transform transform hover:translate-x-2">
+                    <AiOutlineLogin className="mt-[3rem] mr-2" size={26} />
+                    <span className="hidden nav-item-name mt-[3rem]">Login</span>{" "}
+                </div>
+
+                </Link>
+           </li>
+           <li>
+                <Link to="/register" className="flex relative">
+                <div className="flex items-center transition-transform transform hover:translate-x-2">
+                    <AiOutlineUserAdd className="mt-[3rem] mr-2" size={26} />
+                    <span className="hidden nav-item-name mt-[3rem]">Register</span>{" "}
+                </div>
+
+                </Link>
+           </li>
+        </ul> 
     </div>
 };
 
