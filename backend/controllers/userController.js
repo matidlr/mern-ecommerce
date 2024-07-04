@@ -94,7 +94,9 @@ const loginUser = asyncHandler(async (req, res) => {
         user.email = req.body.email || user.email
 
         if (req.body.password) {
-            user.password = req.body.password
+            const salt = await bcryptjs.genSalt(10);
+    const hashedPassword = await bcryptjs.hash(password, salt);
+            user.password = hashedPassword;
         }
 
         const updatedUser = await user.save()
