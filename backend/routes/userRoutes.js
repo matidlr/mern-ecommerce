@@ -1,5 +1,14 @@
 import express from "express";
-import {createUser, loginUser, logout, getAllUsers, getCurrentUserProfile, updateCurrentUserProfile, deleteUserById } from '../controllers/userController.js'
+import {
+    createUser, 
+    loginUser, 
+    logout, 
+    getAllUsers, 
+    getCurrentUserProfile, 
+    updateCurrentUserProfile, 
+    deleteUserById, 
+    getUserById 
+} from '../controllers/userController.js'
 
 import { authenticate, authorizeAdmin } from "../middlewares/authMiddleware.js";
 
@@ -13,6 +22,7 @@ router.route('/profile')
        .get(authenticate, getCurrentUserProfile)
        .put(authenticate, updateCurrentUserProfile);
 
-router.route('/:id').delete(authenticate, authorizeAdmin, deleteUserById)
-
+router.route('/:id')
+       .delete(authenticate, authorizeAdmin, deleteUserById)
+       .get(authenticate, authorizeAdmin, getUserById);
 export default router;
