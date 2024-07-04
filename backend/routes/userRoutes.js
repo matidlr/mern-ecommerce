@@ -1,8 +1,11 @@
 import express from "express";
-import {createUser, loginUser, logout} from '../controllers/userController.js'
+import {createUser, loginUser, logout, getAllUsers} from '../controllers/userController.js'
+
+import { authenticate, authorizeAdmin } from "../middlewares/authMiddleware.js";
+
 const router = express.Router()
 
-router.route('/').post(createUser);
+router.route('/').post(createUser).get(authenticate, authorizeAdmin, getAllUsers);
 router.post("/auth", loginUser);
 router.post('/logout', logout);
 
