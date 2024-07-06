@@ -123,7 +123,7 @@ const Register = () => {
                     Already have an account?
                     <Link
                         to={redirect ? `/login?redirect=${redirect}` : "/login"}
-                        className="text-pink-500 hover:underline"
+                        className="ml-1 text-pink-500 hover:underline"
                         >
                         Login
                     </Link>
