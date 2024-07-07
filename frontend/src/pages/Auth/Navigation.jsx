@@ -9,7 +9,7 @@ import {useLogoutMutation} from '../../redux/api/usersApiSlice';
 import {logout} from '../../redux/features/auth/authSlice';
 
 const Navigation = () => {
-   const {userInfo} = useSelector(state => state.auth)
+   const {userInfo} = useSelector((state) => state.auth)
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [showSidebar, setShowSidebar] = useState(false);
@@ -90,7 +90,6 @@ const Navigation = () => {
                     <span className='text-white'>{userInfo.username}</span>
                 ) : (
                     <>
-                      
                     </>
                 )}
 
@@ -114,57 +113,57 @@ const Navigation = () => {
                 )}
             </button>
 
-         {dropdownOpen && userInfo && (
-            <ul
-              className={`absolute right-0 mt-2 mr-14 space-y-2 bg-white text-gray-600 ${
+            {dropdownOpen && userInfo && (
+          <ul
+            className={`absolute right-0 mt-2 mr-14 space-y-2 bg-white text-gray-600 ${
               !userInfo.isAdmin ? "-top-20" : "-top-80"
-            } `}>
-                {userInfo.isAdmin && (
-                    <>
-                      <li>
-                        <Link 
-                            to="/admin/dashboard"
-                            className="block px-4 py-2 hover:bg-gray-100"
-                            >
-                              Dashboard
-                        </Link>
-                      </li>
-                      <li>
-                        <Link 
-                            to="/admin/productlist"
-                            className="block px-4 py-2 hover:bg-gray-100"
-                            >
-                              Products
-                        </Link>
-                      </li>
-                      <li>
-                        <Link 
-                            to="/admin/categorylist"
-                            className="block px-4 py-2 hover:bg-gray-100"
-                            >
-                              Category
-                        </Link>
-                        </li>
-                        <li>
-                        <Link 
-                            to="/admin/orderlist"
-                            className="block px-4 py-2 hover:bg-gray-100"
-                            >
-                              Orders
-                        </Link>
-                      </li>
-                      <li>
-                        <Link 
-                            to="/admin/userslist"
-                            className="block px-4 py-2 hover:bg-gray-100"
-                            >
-                              Users
-                        </Link>
-                      </li>
-                     
-                    
-                    </>
-                )}
+            } `}
+          >
+            {userInfo.isAdmin && (
+              <>
+                <li>
+                  <Link
+                    to="/admin/dashboard"
+                    className="block px-4 py-2 hover:bg-gray-100"
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/admin/productlist"
+                    className="block px-4 py-2 hover:bg-gray-100"
+                  >
+                    Products
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/admin/categorylist"
+                    className="block px-4 py-2 hover:bg-gray-100"
+                  >
+                    Category
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/admin/orderlist"
+                    className="block px-4 py-2 hover:bg-gray-100"
+                  >
+                    Orders
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/admin/userlist"
+                    className="block px-4 py-2 hover:bg-gray-100"
+                  >
+                    Users
+                  </Link>
+                </li>
+              </>
+            )}
+
                  <li>
                         <Link 
                             to="/profile"
