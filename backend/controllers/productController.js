@@ -75,8 +75,37 @@ const addProduct = asyncHandler(async (req, res) => {
     }
   });
 
+  const fetchProducts = asyncHandler(async (req, res) => {
+    try {
+      const pageSize = 6;
+  
+      const keyword = req.query.keyword
+        ? {
+            name: {
+              $regex: req.query.keyword,
+              $options: "i",
+            },
+          }
+        : {};
+  
+      const count = await Product.countDocuments({ ...keyword });
+      const products = await Product.find({ ...keyword }).limit(pageSize);
+  
+      res.json({
+        products,
+        page: 1,
+        pages: Math.ceil(count / pageSize),
+        hasMore: false,
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Server Error" });
+    }
+  });
+
 export { 
     addProduct, 
     updateProductDetails,
-    removeProduct  
+    removeProduct,
+    fetchProducts
 }
