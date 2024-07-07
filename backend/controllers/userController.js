@@ -61,7 +61,7 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
-const logoutCurrentUser = asyncHandler(async (req, res) => {
+const logout = asyncHandler(async (req, res) => {
   res.cookie("jwt", "", {
     httyOnly: true,
     expires: new Date(0),
@@ -170,7 +170,7 @@ const updateUserById = asyncHandler(async (req, res) => {
 export {
   createUser,
   loginUser,
-  logoutCurrentUser,
+  logout,
   getAllUsers,
   getCurrentUserProfile,
   updateCurrentUserProfile,
