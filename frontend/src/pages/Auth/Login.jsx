@@ -32,11 +32,15 @@ const Login = () => {
      
      try {
         const res = await login({email, password}).unwrap()
-        dispatch(setCredentials({...res}))
+        
+            dispatch(setCredentials({...res}));
+            navigate(redirect);
+       
+        
      } catch (error) {
         toast.error(error?.data?.message || error.message)
      }
-   }
+   };
 
     return <div>
         <section className="pl-[10rem] flex flex-wrap"> 
