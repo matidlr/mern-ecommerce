@@ -79,7 +79,7 @@ const Navigation = () => {
             <span className="hidden nav-item-name mt-[3rem]">
               Favorites
             </span>{" "}
-            
+            <FavoritesCount />
           </div>
         </Link>
                     </div>   
