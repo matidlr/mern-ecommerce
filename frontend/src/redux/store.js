@@ -16,7 +16,7 @@ const store = configureStore({
 
     preloadedState: {
         favorites: initialFavorites
-    }
+    },
 
     middleware: (getDefaultMiddleware) =>
          getDefaultMiddleware().concat(apiSlice.middleware),
