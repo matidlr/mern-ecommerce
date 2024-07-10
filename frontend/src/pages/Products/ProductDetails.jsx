@@ -18,6 +18,7 @@ import {
 import moment from "moment";
 import HeartIcon from "./HeartIcon";
 import Ratings from "./Ratings";
+import ProductTabs from "./ProductTabs";
 
 const ProductDetails = () => {
         const { id: productId } = useParams();
@@ -39,6 +40,26 @@ const ProductDetails = () => {
       
         const [createReview, { isLoading: loadingProductReview }] =
           useCreateReviewMutation();
+
+          const addToCartHandler = () => {
+            
+          }
+ 
+          const submitHandler = async (e) => {
+            e.preventDefault();
+
+            try {
+                await createReview({
+                    productId,
+                    rating,
+                    comment,
+                }).unwrap();
+                refetch();
+                toast.success("Review created successfully")
+            } catch (error) {
+                toast.error(error?.data?.message || error.message);
+            }
+          };
 
     return (
         <>
@@ -141,9 +162,19 @@ const ProductDetails = () => {
                    </div>
               </div>
 
-                <div className="mt-[5rem] container flex flex-wrap items-start justify-between ml-[10rem]">
-                    
+             
                 </div>
+                <div className="mt-[5rem] container flex flex-wrap items-start justify-between ml-[10rem]">
+                    <ProductTabs  
+                            loadingProductReview={loadingProductReview}
+                            userInfo={userInfo}
+                            submitHandler={submitHandler}
+                            rating={rating}
+                            setRating={setRating}
+                            comment={comment}
+                            setComment={setComment}
+                            product={product}
+                    />
              </div>
             </>
          )}
